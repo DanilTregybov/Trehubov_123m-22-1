@@ -58,6 +58,7 @@ class LogShippedProducts(models.Model):
     Tare_weight_kilos = models.FloatField()  # Вага тари, кг
     Net_weight_kilos = models.FloatField()  # Вага нетто, кг
     Price = models.IntegerField()  # Ціна
+    Carrier = models.CharField(max_length=150)  # Перевізник
     Driver = models.CharField(max_length=80)  # Водій
     Driver_phone = models.CharField(max_length=40)  # Телефон водія
     Unloading_point = models.CharField(max_length=350)  # Пункт вивантаження
@@ -85,6 +86,9 @@ class LogShippedProducts(models.Model):
 
 
 class AuxiliaryMaterials(models.Model):
+    """
+        Таблиця Допоміжних матеріалів
+    """
     Date = models.DateTimeField(auto_now_add=True)  # Дата поставки
     Product_name = models.CharField(max_length=150)  # Продукція
     Supplier = models.CharField(max_length=150)  # Постачальник

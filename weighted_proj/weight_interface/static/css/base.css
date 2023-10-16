@@ -92,7 +92,7 @@ nav .menu-text a:hover {
     position: absolute;
     z-index: -1;
     min-width: 100%;
-    top: -2em;
+    top: -0.5em;
     width: 100%;
 }
 
@@ -104,28 +104,28 @@ nav .menu-item:hover ~ #sub-menu-container #sub-menu-holder {
 }
 nav .menu-item:nth-of-type(1):hover ~ #sub-menu-container #sub-menu-holder,
 nav .menu-item:nth-of-type(4):hover ~ #sub-menu-container #sub-menu-holder {
-    clip-path: inset(0 28.75em 0 0 round 10px);
-    height: 14em;
+    clip-path: inset(0 39em 0 0 round 10px);
+    height: 8em;
 }
 
 nav .menu-item:nth-of-type(2):hover ~ #sub-menu-container #sub-menu-holder,
 nav .menu-item:nth-of-type(3):hover ~ #sub-menu-container #sub-menu-holder {
-    clip-path: inset(0 15em 0 0 round 10px);
+    clip-path: inset(0 37em 0 0 round 10px);
 }
 
 nav .menu-item:nth-of-type(1):hover ~ #sub-menu-container #sub-menu-holder {
-    left: calc(-9em + -1px);
+    left: calc(-4em + -1px);
 }
 nav .menu-item:nth-of-type(2):hover ~ #sub-menu-container #sub-menu-holder {
-    left: calc(-6.5em + -1px);
-    height: 18.75em;
+    left: calc(5em + -1px);
+    height: 8em;
 }
 nav .menu-item:nth-of-type(3):hover ~ #sub-menu-container #sub-menu-holder {
-    left: calc(2.75em + 1px);
-    height: 24.5em;
+    left: calc(15em + 1px);
+    height: 8em;
 }
 nav .menu-item:nth-of-type(4):hover ~ #sub-menu-container #sub-menu-holder {
-    left: calc(19em + 1px);
+    left: calc(24em + 1px);
 }
 
 .menu-item .sub-menu {
@@ -133,7 +133,7 @@ nav .menu-item:nth-of-type(4):hover ~ #sub-menu-container #sub-menu-holder {
     top: 3em;
     color: rgba(0,0,0,0.5);
     border-radius: 10px;
-    min-width: 27.5em;
+    min-width: 22em;
     pointer-events: none;
     box-sizing: border-box;
     z-index: 999;
@@ -182,7 +182,7 @@ nav .menu-item:nth-of-type(4):hover ~ #sub-menu-container #sub-menu-holder {
 }
 .menu-item:hover .sub-menu {
     opacity: 1;
-    margin-left: 0;
+    margin-left: 50;
 }
 
 .menu-item:hover ~ #sub-menu-container #sub-menu-holder  {
@@ -392,4 +392,15 @@ nav .menu-item.highlight:hover ~ #sub-menu-container #sub-menu-holder #sub-menu-
 }
 .table tbody tr:nth-child(even){
     background: #F7F7F7;
+}
+
+.pagination {
+  display: inline-block;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
 }
