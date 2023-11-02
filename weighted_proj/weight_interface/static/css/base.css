@@ -368,9 +368,10 @@ nav .menu-item.highlight:hover ~ #sub-menu-container #sub-menu-holder #sub-menu-
 }
 
 .table{
-    border: 1px solid #eee;
+    border: 0px solid #eee;
     table-layout: ;
-    font-size: 12px;
+    font-size: 13.5px;
+    justify-content: center;
 
     width: 100%;
     margin-bottom: 20px;
@@ -380,11 +381,11 @@ nav .menu-item.highlight:hover ~ #sub-menu-container #sub-menu-holder #sub-menu-
     font-weight: bold;
     padding: 5px;
     background: #efefef;
-    border: 1px solid #dddddd;
+    border: 0px solid #dddddd;
 }
 .table td{
-    padding: 5px 10px;
-    border: 1px solid #eee;
+    padding: 2px 4px;
+    border: 0px solid #eee;
     text-align: left;
 }
 .table tbody tr:nth-child(odd){
@@ -395,12 +396,44 @@ nav .menu-item.highlight:hover ~ #sub-menu-container #sub-menu-holder #sub-menu-
 }
 
 .pagination {
-  display: inline-block;
+    position:absolute;
+
+    /*justify-content: right;*/
+    margin-top: 20px;
+     top: 570;
+    left: 1000;
+    right: 0;
 }
 
 .pagination a {
-  color: black;
-  float: left;
-  padding: 8px 16px;
-  text-decoration: none;
+    color: #f8f9fa;
+    padding: 8px 16px;
+    font-size: 13.5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    border: 1px solid #dee2e6;
+    margin: 0 2px;
+}
+
+.pagination a:hover {
+    background-color: #007BFF;
+}
+
+.pagination .current-page {
+    margin-right:8px;
+    padding: 8px 10px;
+    font-size: 13.5px;
+    background-color: #007BFF;
+    color: #fff;
+}
+
+.btn-change {
+    color: #f8f9fa;
+    background-color: #007BFF;
+    padding: 4px 4px;
+}
+.btn-delete {
+    color: #f8f9fa;
+    background-color: #D10000;
+    padding: 4px 4px;
 }

@@ -30,7 +30,7 @@ class CerealCrops(models.Model):
 
 
     def __str__(self):
-        return "{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|{}".format(self.pk,self.Date,
+        return "{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|{}".format(self.pk,self.Date,
                                                                              self.Supplier, self.Place_of_download,
                                                                              self.Recipient, self.Delivery_condition,
                                                                              self.Analysis_number,
@@ -68,7 +68,8 @@ class LogShippedProducts(models.Model):
     Weightman = models.CharField(max_length=80)  # Ваговик
 
     def __str__(self):
-        return "{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|".format(self.Status,
+        return "{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|".format(self.pk,
+                                                                      self.Status,
                                                                       self.Date,
                                                                       self.Customer,
                                                                       self.Product,
@@ -99,9 +100,9 @@ class AuxiliaryMaterials(models.Model):
     Time_2nd_weighing = models.TimeField()  # Час 2-го зважування
     Tare_weight_kilos = models.FloatField()  # Вага тари, кг
     Net_weight_kilos = models.FloatField()  # Вага нетто, кг
-    Weight_on_invoice_kilos = models.FloatField()  # Вага по накладній, кг
-    Surplus = models.FloatField()  # Надлишок, кг
-    Lack_of = models.FloatField()  # Нестача, кг
+    Weight_on_invoice_kilos = models.FloatField()  # Вага по накладній,кг
+    Surplus = models.FloatField()  # Надлишок,кг
+    Lack_of = models.FloatField()  # Нестача,кг
     Driver = models.CharField(max_length=80)  # Водій
     Weightman = models.CharField(max_length=80)  # Ваговик
     Number_of_CN = models.IntegerField()  # Номер ТТН

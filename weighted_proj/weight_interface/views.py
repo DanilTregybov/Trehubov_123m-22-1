@@ -12,7 +12,14 @@ def get_cerealcrops(request):
     cerealcrops = CerealCrops.objects.all()
     items_per_page = 10  # Кількість записів на кожній сторінці
     paginator = Paginator(cerealcrops, items_per_page)
-    return render(request, "weight_interface/cerealcrops_list.html", {"cerealcrops": cerealcrops})
+    page = request.GET.get('page')
+    try:
+        current_page = paginator.page(page)
+    except PageNotAnInteger:
+        current_page = paginator.page(1)
+    except EmptyPage:
+        current_page = paginator.page(paginator.num_pages)
+    return render(request, "weight_interface/cerealcrops_list.html", {"current_page": current_page})
 
 
 def get_update_detail_cerealcrop(request, pk):
@@ -22,8 +29,17 @@ def get_update_detail_cerealcrop(request, pk):
 
 def get_logshippedproducts(request):
     log_shipped_products = LogShippedProducts.objects.all()
+    items_per_page = 10
+    paginator = Paginator(log_shipped_products, items_per_page)
+    page = request.GET.get('page')
+    try:
+        current_page = paginator.page(page)
+    except PageNotAnInteger:
+        current_page = paginator.page(1)
+    except EmptyPage:
+        current_page = paginator.page(paginator.num_pages)
     return render(request, "weight_interface/log_shipped_products_list.html",
-                  {"log_shipped_products": log_shipped_products})
+                  {"current_page": current_page})
 
 
 def get_update_detail_logshippedproducts(request, pk):
@@ -34,5 +50,14 @@ def get_update_detail_logshippedproducts(request, pk):
 
 def get_auxiliarymaterials(request):
     auxiliarymaterials = AuxiliaryMaterials.objects.all()
+    items_per_page = 10
+    paginator = Paginator(auxiliarymaterials, items_per_page)
+    page = request.GET.get('page')
+    try:
+        current_page = paginator.page(page)
+    except PageNotAnInteger:
+        current_page = paginator.page(1)
+    except EmptyPage:
+        current_page = paginator.page(paginator.num_pages)
     return render(request, "weight_interface/auxiliarymaterials_list.html",
-                  {"auxiliarymaterials": auxiliarymaterials})
+                  {"current_page": current_page})

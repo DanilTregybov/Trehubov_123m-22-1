@@ -6,12 +6,12 @@
 	</head>
 {% block content %}
     <h2 style="color: #C5CCC8;">Готова продукція</h2>
-    {% if log_shipped_products %}
+    {% if current_page %}
 
 			<table class="table">
                  <thead>
 					<tr>
-						<th>Номер</th>
+						<th>№</th>
 						<th>Стан</th>
 						<th>Дата</th>
 						<th>Покупець</th>
@@ -24,8 +24,8 @@
 						<th>Водій</th>
 						<th>Телефон водія</th>
 						<th>Пункт вивантаження</th>
-						<th>Номер авто</th>
-						<th>Номер причепа</th>
+						<th>№ авто</th>
+						<th>№ причепа</th>
 						<th>Час виїзду</th>
 						<th>Ваговик</th>
 						<th colspan="2">Дії</th>
@@ -33,8 +33,8 @@
 					</tr>
 				</thead>
 				<tbody>
-				{% for log_shipped_product in log_shipped_products %}
-					<tr>
+                {% for log_shipped_product in current_page %}
+                        <tr>
 						<td>{{log_shipped_product.pk}}</td>
 						<td>{{log_shipped_product.Status}}</td>
 						<td>{{log_shipped_product.Date|date:"j.n.Y"}}</td>
@@ -52,22 +52,43 @@
 						<td style="white-space: nowrap;">{{log_shipped_product.Trailer_license_plate}}</td>
 						<td>{{log_shipped_product.Departure_time}}</td>
 						<td style="white-space: nowrap;">{{log_shipped_product.Weightman}}</td>
-						<td >
-							<button type="button" >
-								<span aria-hidden="true"></span>
-							</button>
-						</td>
-						<td >
-							<button type="button">
-								<span  aria-hidden="true"></span>
-							</button>
-						</td>
-					</tr>
-				{% endfor %}
+                            <td >
+                                <button type="button" class="btn-change">
+                                    <span aria-hidden="true"><i class="bi bi-pencil-square"></i></span>
+                                </button>
+
+                            </td>
+                            <td >
+                                <button type="button" class="btn-delete">
+                                    <span  aria-hidden="true"><i class="bi bi-x-square-fill"></i></span>
+                                </button>
+                            </td>
+                        </tr>
+                    {% endfor %}
+
 				</tbody>
             </table>
 
-
     {% endif %}
 {% endblock %}
+{% block pagin %}
+     <main>
+		<div class="pagination" >
+			<span class="step-links">
+				{% if current_page.has_previous %}
+					<a href="?page=1">&laquo; перша</a>
+					<a href="?page={{ current_page.previous_page_number }}">попередня</a>
+				{% endif %}
 
+				<span class="current-page">
+					Сторінка {{ current_page.number }} з {{ current_page.paginator.num_pages }}.
+				</span>
+
+				{% if current_page.has_next %}
+					<a href="?page={{ current_page.next_page_number }}">наступна</a>
+					<a href="?page={{ current_page.paginator.num_pages }}">остання &raquo;</a>
+				{% endif %}
+			</span>
+		</div>
+	 </main>
+{% endblock %}

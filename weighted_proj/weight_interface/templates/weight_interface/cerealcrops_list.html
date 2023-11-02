@@ -1,5 +1,3 @@
-
-
 {% extends "weight_interface/base.html" %}
 
     <head>
@@ -8,21 +6,21 @@
 	</head>
 {% block content %}
     <h2 style="color: #C5CCC8;">Зернові культури</h2>
-    {% if cerealcrops %}
+    {% if current_page %}
 
 			<table class="table">
                  <thead>
 					<tr>
-						<th>Номер</th>
+						<th>№</th>
 						<th>Дата поставки</th>
 						<th>Постачальник</th>
 						<th>Місце завантаження</th>
 						<th>Одержувач</th>
 						<th>Умова поставки</th>
-						<th>Номер аналізу</th>
-						<th>Номер ТТН</th>
-						<th>Номер авто</th>
-						<th>Номер причепа</th>
+						<th>№ аналізу</th>
+						<th>№ ТТН</th>
+						<th>№ авто</th>
+						<th>№ причепа</th>
 						<th>Вага брутто,кг</th>
 						<th>Вага тари,кг</th>
 						<th>Вага по накладній,кг</th>
@@ -39,44 +37,68 @@
 					</tr>
 				</thead>
 				<tbody>
-				{% for cerealcrop in cerealcrops %}
-					<tr>
-						<td>{{cerealcrop.pk}}</td>
-						<td>{{cerealcrop.Date|date:"j.n.Y"}}</td>
-						<td style="white-space: nowrap;">{{cerealcrop.Supplier}}</td>
-						<td style="white-space: nowrap;">{{cerealcrop.Place_of_download}}</td>
-						<td>{{cerealcrop.Recipient}}</td>
-						<td>{{cerealcrop.Delivery_condition}}</td>
-						<td>{{cerealcrop.Analysis_number}}</td>
-						<td>{{cerealcrop.Number_of_CN}}</td>
-						<td style="white-space: nowrap;">{{cerealcrop.Car_license_plate}}</td>
-						<td style="white-space: nowrap;">{{cerealcrop.Trailer_license_plate}}</td>
-						<td>{{cerealcrop.Gross_weight_kilos}}</td>
-						<td>{{cerealcrop.Tare_weight_kilos}}</td>
-						<td>{{cerealcrop.Weight_on_invoice_kilos}}</td>
-						<td>{{cerealcrop.Actual_weight}}</td>
-						<td>{{cerealcrop.Lack_of}}</td>
-						<td style="white-space: nowrap;">{{cerealcrop.Driver}}</td>
-						<td>{{cerealcrop.Driver_phone}}</td>
-						<td style="white-space: nowrap;">{{cerealcrop.Carrier}}</td>
-						<td>{{cerealcrop.Check_in_time}}</td>
-						<td>{{cerealcrop.Departure_time}}</td>
-						<td style="white-space: nowrap;">{{cerealcrop.Weightman}}</td>
-						<td >
-							<button type="button" >
-								<span aria-hidden="true"></span>
-							</button>
-						</td>
-						<td >
-							<button type="button">
-								<span  aria-hidden="true"></span>
-							</button>
-						</td>
-					</tr>
-				{% endfor %}
+                {% for cerealcrop in current_page %}
+
+
+                        <tr>
+                            <td>{{cerealcrop.pk}}</td>
+                            <td>{{cerealcrop.Date|date:"j.n.Y"}}</td>
+                            <td style="white-space: nowrap;">{{cerealcrop.Supplier}}</td>
+                            <td style="white-space: nowrap;">{{cerealcrop.Place_of_download}}</td>
+                            <td>{{cerealcrop.Recipient}}</td>
+                            <td>{{cerealcrop.Delivery_condition}}</td>
+                            <td>{{cerealcrop.Analysis_number}}</td>
+                            <td>{{cerealcrop.Number_of_CN}}</td>
+                            <td style="white-space: nowrap;">{{cerealcrop.Car_license_plate}}</td>
+                            <td style="white-space: nowrap;">{{cerealcrop.Trailer_license_plate}}</td>
+                            <td>{{cerealcrop.Gross_weight_kilos}}</td>
+                            <td>{{cerealcrop.Tare_weight_kilos}}</td>
+                            <td>{{cerealcrop.Weight_on_invoice_kilos}}</td>
+                            <td>{{cerealcrop.Actual_weight}}</td>
+                            <td>{{cerealcrop.Lack_of}}</td>
+                            <td style="white-space: nowrap;">{{cerealcrop.Driver}}</td>
+                            <td>{{cerealcrop.Driver_phone}}</td>
+                            <td style="white-space: nowrap;">{{cerealcrop.Carrier}}</td>
+                            <td>{{cerealcrop.Check_in_time}}</td>
+                            <td>{{cerealcrop.Departure_time}}</td>
+                            <td style="white-space: nowrap;">{{cerealcrop.Weightman}}</td>
+                            <td >
+                                <button type="button" class="btn-change">
+                                    <span aria-hidden="true"><i class="bi bi-pencil-square"></i></span>
+                                </button>
+
+                            </td>
+                            <td >
+                                <button type="button" class="btn-delete">
+                                    <span  aria-hidden="true"><i class="bi bi-x-square-fill"></i></span>
+                                </button>
+                            </td>
+                        </tr>
+                    {% endfor %}
 
 				</tbody>
             </table>
+
     {% endif %}
 {% endblock %}
+{% block pagin %}
+     <main>
+                <div class="pagination" >
+                    <span class="step-links">
+                        {% if current_page.has_previous %}
+                            <a href="?page=1">&laquo; перша</a>
+                            <a href="?page={{ current_page.previous_page_number }}">попередня</a>
+                        {% endif %}
 
+                        <span class="current-page">
+                            Сторінка {{ current_page.number }} з {{ current_page.paginator.num_pages }}.
+                        </span>
+
+                        {% if current_page.has_next %}
+                            <a href="?page={{ current_page.next_page_number }}">наступна</a>
+                            <a href="?page={{ current_page.paginator.num_pages }}">остання &raquo;</a>
+                        {% endif %}
+                    </span>
+                </div>
+             </main>
+{% endblock %}

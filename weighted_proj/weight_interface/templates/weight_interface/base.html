@@ -20,14 +20,14 @@
                     <div class="icon-box">
                         <div class="icon"><i class="bi bi-table"></i></div>
                         <div class="text">
-                            <div class="title"><a style="color: #2B4153; text-decoration:none;" href="{% url 'cerealcrops' %}">Облік зернових культур</a><i class="far fa-arrow-right"></i></div>
-                            <div class="sub-text">Перегляд таблиці</div>
+                            <div class="title"><a style="color: #2B4153; text-decoration:none;" href="{% url 'cerealcrops' %}">Облік зернових культур</a><i class="far fa-arrow-right" ></i></div>
+                            <div class="sub-text"><a style="color: #2B4153; text-decoration:none;" href="{% url 'cerealcrops' %}">Перегляд таблиці</a></div>
                         </div>
                     </div>
                     <div class="icon-box">
                         <div class="icon"><i class="bi bi-truck"></i></div>
                         <div class="text">
-                            <div class="title"><a style="color: #2B4153; text-decoration:none;" href="#">Прийняти сировину</a><i class="far fa-arrow-right"></i></div>
+                            <div class="title"><a style="color: #2B4153; text-decoration:none;" href="#">Прийняти сировину<i class="far fa-arrow-right"></i></a></div>
                             <div class="sub-text">Заповнення форми</div>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
                         <div class="icon"><i class="bi bi-clipboard2-data"></i></div>
                         <div class="text">
                             <div class="title"><a style="color: #2B4153; text-decoration:none;" href="{% url 'log_shipped_products' %}">Облік готової продукції</a><i class="far fa-arrow-right"></i></div>
-                            <div class="sub-text">Перегляд таблиці</div>
+                            <div class="sub-text"><a style="color: #2B4153; text-decoration:none;" href="{% url 'log_shipped_products' %}">Перегляд таблиці</a></div>
                         </div>
                     </div>
                     <div class="icon-box">
@@ -65,8 +65,8 @@
                     <div class="icon-box">
                         <div class="icon"><i class="bi bi-book-half"></i></div>
                         <div class="text">
-                            <div class="title">Облік допоміжних матеріалів<i class="far fa-arrow-right"></i></div>
-                            <div class="sub-text">Перегляд таблиці</div>
+                            <div class="title"><a style="color: #2B4153; text-decoration:none;" href="{% url 'auxiliarymaterials' %}">Облік допоміжних матеріалів</a><i class="far fa-arrow-right"></i></div>
+                            <div class="sub-text"><a style="color: #2B4153; text-decoration:none;" href="{% url 'auxiliarymaterials' %}">Перегляд таблиці</a></div>
                         </div>
                     </div>
                     <div class="icon-box">
@@ -110,10 +110,14 @@
                 </div>
             </div>
         </nav>
+         {% block pagin %} {% endblock %}
 </header>
     <body>
+
         <main>
             {% block content %}{% endblock %}
+
         </main>
+
     </body>
 </html>

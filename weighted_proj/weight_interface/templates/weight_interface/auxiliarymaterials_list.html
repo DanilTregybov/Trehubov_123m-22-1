@@ -5,69 +5,92 @@
 
 	</head>
 {% block content %}
-    <h2 style="color: #C5CCC8;">Допоміжні матеріали</h2>
-    {% if auxiliarymaterials %}
+    <h2 style="color: #C5CCC8;">Зернові культури</h2>
+    {% if current_page %}
 
 			<table class="table">
                  <thead>
 					<tr>
-						<th>Номер</th>
-						<th>Стан</th>
+						<th>№</th>
 						<th>Дата</th>
-						<th>Покупець</th>
 						<th>Продукція</th>
-						<th>Поточна тара</th>
+						<th>Постачальник</th>
+						<th>№ авто</th>
+						<th>№ причепа</th>
+						<th>Час 1-го зваж</th>
+						<th>Вага брутто, кг</th>
+						<th>Час 2-го зваж</th>
 						<th>Вага тари,кг</th>
 						<th>Вага нетто,кг</th>
-						<th>Ціна</th>
-						<th>Перевізник</th>
+						<th>Вага по накладній,кг</th>
+						<th>Надлишок,кг</th>
+						<th>Нестача,кг</th>
 						<th>Водій</th>
-						<th>Телефон водія</th>
-						<th>Пункт вивантаження</th>
-						<th>Номер авто</th>
-						<th>Номер причепа</th>
-						<th>Час виїзду</th>
 						<th>Ваговик</th>
+						<th>Номер ТТН</th>
 						<th colspan="2">Дії</th>
 
 					</tr>
 				</thead>
 				<tbody>
-				{% for auxiliarymaterial in auxiliarymaterials %}
-					<tr>
-						<td>{{auxiliarymaterials.pk}}</td>
-						<td>{{auxiliarymaterials.Status}}</td>
+                {% for auxiliarymaterials in current_page %}
+
+
+                        <tr>
+                        <td>{{auxiliarymaterials.pk}}</td>
 						<td>{{auxiliarymaterials.Date|date:"j.n.Y"}}</td>
-						<td style="white-space: nowrap;">{{auxiliarymaterials.Customer}}</td>
-						<td>{{auxiliarymaterials.Product}}</td>
-						<td>{{auxiliarymaterials.Current_container}}</td>
-						<td>{{auxiliarymaterials.Tare_weight_kilos}}</td>
-						<td>{{auxiliarymaterials.Net_weight_kilos}}</td>
-						<td>{{auxiliarymaterials.Price}}</td>
-						<td style="white-space: nowrap;">{{auxiliarymaterials.Carrier}}</td>
-						<td style="white-space: nowrap;">{{auxiliarymaterials.Driver}}</td>
-						<td>{{auxiliarymaterials.Driver_phone}}</td>
-						<td style="white-space: nowrap;">{{auxiliarymaterials.Unloading_point}}</td>
+						<td style="white-space: nowrap;">{{auxiliarymaterials.Product_name}}</td>
+						<td style="white-space: nowrap;">{{auxiliarymaterials.Supplier}}</td>
 						<td style="white-space: nowrap;">{{auxiliarymaterials.Car_license_plate}}</td>
 						<td style="white-space: nowrap;">{{auxiliarymaterials.Trailer_license_plate}}</td>
-						<td>{{auxiliarymaterials.Departure_time}}</td>
+						<td>{{auxiliarymaterials.Time_1st_weighing}}</td>
+						<td>{{auxiliarymaterials.Gross_weight_kilos}}</td>
+						<td>{{auxiliarymaterials.Time_2nd_weighing}}</td>
+						<td>{{auxiliarymaterials.Tare_weight_kilos}}</td>
+						<td>{{auxiliarymaterials.Net_weight_kilos}}</td>
+						<td>{{auxiliarymaterials.Weight_on_invoice_kilos}}</td>
+						<td style="white-space: nowrap;">{{auxiliarymaterials.Surplus}}</td>
+						<td>{{auxiliarymaterials.Lack_of}}</td>
+						<td style="white-space: nowrap;">{{auxiliarymaterials.Driver}}</td>
 						<td style="white-space: nowrap;">{{auxiliarymaterials.Weightman}}</td>
-						<td >
-							<button type="button" >
-								<span aria-hidden="true"></span>
-							</button>
-						</td>
-						<td >
-							<button type="button">
-								<span  aria-hidden="true"></span>
-							</button>
-						</td>
-					</tr>
-				{% endfor %}
+						<td>{{auxiliarymaterials.Number_of_CN}}</td>
+                            <td >
+                                <button type="button" class="btn-change">
+                                    <span aria-hidden="true"><i class="bi bi-pencil-square"></i></span>
+                                </button>
+
+                            </td>
+                            <td >
+                                <button type="button" class="btn-delete">
+                                    <span  aria-hidden="true"><i class="bi bi-x-square-fill"></i></span>
+                                </button>
+                            </td>
+                        </tr>
+                    {% endfor %}
+
 				</tbody>
             </table>
 
-
     {% endif %}
 {% endblock %}
+{% block pagin %}
+     <main>
+                <div class="pagination" >
+                    <span class="step-links">
+                        {% if current_page.has_previous %}
+                            <a href="?page=1">&laquo; перша</a>
+                            <a href="?page={{ current_page.previous_page_number }}">попередня</a>
+                        {% endif %}
 
+                        <span class="current-page">
+                            Сторінка {{ current_page.number }} з {{ current_page.paginator.num_pages }}.
+                        </span>
+
+                        {% if current_page.has_next %}
+                            <a href="?page={{ current_page.next_page_number }}">наступна</a>
+                            <a href="?page={{ current_page.paginator.num_pages }}">остання &raquo;</a>
+                        {% endif %}
+                    </span>
+                </div>
+             </main>
+{% endblock %}
