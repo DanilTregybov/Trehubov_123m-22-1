@@ -18,7 +18,8 @@ class CerealCrops(models.Model):
     Trailer_license_plate = models.CharField(max_length=15)  # Реєстраційний номер причіпа
     Gross_weight_kilos = models.FloatField()  # Вага брутто, кг
     Tare_weight_kilos = models.FloatField()  # Вага тари, кг
-    Weight_on_invoice_kilos = models.FloatField()  # Вага по накладній, кг
+    Weight_on_invoice_kilos = models.FloatField()  # Вага по накладній БРУТТО, кг
+    Weight_net_kilos = models.FloatField()  # Вага по накладній НЕТТО, кг
     Actual_weight = models.FloatField()  # Вага фактична, кг
     Lack_of = models.FloatField()  # Нестача
     Driver = models.CharField(max_length=80)  # Водій

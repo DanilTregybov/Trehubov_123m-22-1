@@ -425,3 +425,270 @@ nav .menu-item.highlight:hover ~ #sub-menu-container #sub-menu-holder #sub-menu-
 #info-box a:hover {
     color: rgba(255,255,255,0.5);
 }
+
+/////////////////////////////////////////////////////////////////////////////
+ <body>
+
+            <div class="bod">
+
+                <div class="div1">
+                    <form method="post">
+                        <table class="table1">
+                            <tr>
+                                <td>№ ТТН {{form.Number_of_CN}}</td>
+                                <td>Заявка rand number datetime</td>
+                                <td>від datatime</td>
+                                <td><button>Коригування под вопросом</button></td>
+                            </tr>
+                            <tr>
+                                <td>Автомобіль {{form.Car_license_plate}}</td>
+                                <td>Причеп {{form.Trailer_license_plate}}</td>
+                                <td>Водій {{form.Driver}}</td>
+                                <td>Тел... {{form.Driver_phone}}</td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+                <div class="div1">
+                    <form method="post">
+                        <table class="table2">
+                            <tr>
+                                <td>Перевізник {{form.Car_license_plate}}</td>
+                                <td>Код перевізника rand number</td>
+
+
+                            </tr>
+                            <tr>
+                                <td>Постачальник {{form.Supplier}}</td>
+                                <td>Код відправника вантажу rand number</td>
+                                <td>Предмет договору</td>
+
+                            </tr>
+                            <tr>
+                                <td>Відправник вантажу rand char</td>
+                                <td>Договір постачальника rand number</td>
+                                <td>rand form</td>
+
+                            </tr>
+                            <tr>
+                                <td>Отримувач {{form.Recipient}}</td>
+                                <td>Код власника зерна rand number</td>
+                                <td>Умова поставки</td>
+
+                            </tr>
+                            <tr>
+                                <td>Місце завантаж {{form.Place_of_download}}</td>
+                                <td>№ поставки rand number</td>
+                                <td>{{form.Delivery_condition}}</td>
+
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+                <div class="div3">
+                    <form method="post">
+
+                            <table >
+                                <legend> Зважування</legend>
+                                <tr>
+
+                                    <td>Вага Брут {{form.Gross_weight_kilos}}</td>
+                                    <td>{{form.Delivery_condition}}</td>
+                                </tr>
+                                <tr></tr>
+                                <tr></tr>
+                                <tr></tr>
+                            </table>
+
+                            <table >
+                            <tr>
+                               <td>Брутто {{form.Gross_weight_kilos}}</td>
+                            </tr>
+                            <tr>
+                                <td>№ поставки rand number</td>
+                            </tr>
+                            <tr>
+                                <td>{{form.Delivery_condition}}</td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+                <div class="div3">
+                    <form method="post">
+
+                    </form>
+                </div>
+            </div>
+
+    </body>
+
+
+на дивах
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+       <body>
+            <div class="bod">
+                <div class="content">
+                   <form method="post" class="form-cust" >
+                        <h3 style="color: #C5CCC8;">Прийом кукурудзи </h3>
+                        <div class="base1">
+                            <div class="row">
+                                <div class="first">Автомобіль {{form.Carrier}}</div>
+                                <div class="first">Причеп {{form.Trailer_license_plate}}</div>
+                                <div class="first">Водій {{form.Driver}}</div>
+                                <div class="first">Телефон {{form.Driver_phone}}</div>
+                            </div>
+                            <div class="row">
+                                <div class="first">від {{ datetime_now }}</div>
+                                <div class="first">№ ТТН{{form.Number_of_CN}</div>
+                                <div class="first">Міс.заван {{form.Place_of_download}}</div>
+                                <div class="button "><button type="submit">Провести</button></div>
+                            </div>
+                        </div>
+                       <br>
+                        <div class="base2">
+                            <div class="row">
+                                <div class="second">Перевізник{{form.Car_license_plate}}</div>
+                                <div class="second">Постачал{{form.Supplier}}</div>
+                                <div class="second">Отримувач{{form.Recipient}}</div>
+                                <div class="second">Умов пост{{form.Delivery_condition}}</div>
+                            </div>
+                        </div>
+                        <div class="base3left">
+                                <div class="row">
+                                    <div class="third">БРУТТО  {{form.Weight_on_invoice_kilos}}</div>
+                                    <div class="third">Вага БРУТ {{form.Gross_weight_kilos}}</div>
+                                    <div class="third">
+                                        <input id="1" name="brut" type="text" size="3"><button>Вага брутто</button>
+                                    </div>
+                                    <div class="third">Час заїзду
+                                    <input id="3" name="year" type="time" maxlength="4">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="third">№ аналізу{{form.Analysis_number}}</div>
+                                    <div class="third">Вага ТАРИ {{form.Tare_weight_kilos}}</div>
+                                    <div class="third">
+                                        <input id="2" name="nett" type="text" size="3"><button>Вага тари</button>
+                                    </div>
+                                    <div class="third">Час виїзду
+                                    <input id="4" name="year" type="time" maxlength="4">
+                                    </div>
+                                </div>
+                                <div class="row">
+
+                                    <div class="third">НЕТТО{{form.Weight_net_kilos}}</div>
+                                    <div class="third">Вага НЕТТО {{form.Actual_weight}}</div>
+                                    <div class="third">Нестача{{form.Lack_of}}</div>
+                                    <div class="third">Ваговик {{form.Weightman}}</div>
+
+                                </div>
+
+                                <div class="row">
+
+                                </div>
+                        </div>
+                   </form>
+                </div>
+            </div>
+    </body>
+ЧЧЧЧЧЧЧЧЧЧЧЧЧЧЧЧЧЧЧЧЧЧЧЧЧЧЧЧЧЧЧЧЧЧЧЧЧЧЧЧЧЧЧЧЧЧЧЧЧЧ
+
+.bod{
+
+
+    justify-content: center; /* Центрування по горизонталі */
+    align-items: center;
+    background-color: brown;/* #192841 по горизонталі */
+    width: 100%;
+
+}
+.form-cust{
+    margin-top: 15px;
+}
+.content{
+    display: flex;
+    flex-direction: column;
+     /* Центрування по горизонталі */
+    align-items: center;
+    width: 85%;
+    background-color: #192841;/* Центрування по горизонталі */
+    border-style:solid;
+    border-color: lightgrey;
+    border-width: 0px;
+}
+.base1{
+    width: 100%;
+
+    background-color: red;
+    border-style:solid;
+    border-color: #0A0100;
+    border-width: 1px;
+}
+
+.base2{
+
+    width: 100%;
+
+    background-color: pink;
+    border-style:solid;
+    border-color: #0A0100;
+    border-width: 1px;
+}
+.base3left{
+
+    width: 100%;
+
+    background-color: orange;
+    border-style:solid;
+    border-color: grey;
+    border-width: 3px;
+
+}
+.row{
+    with:100%;
+}
+.first{
+
+    width: 23%;
+    height: 35px;
+    background-color: white;
+    border-style:solid;
+    border-color: #009933;
+    border-width: 1px;
+    float:left;
+    margin:3px;
+    cursor:pointer;
+}
+
+.second{
+
+    width: 23%;
+    height: 35px;
+    background-color: lightyellow;
+    border-style:solid;
+    border-color: red;
+    border-width: 1px;
+    float:left;
+    margin:3px;
+    cursor:pointer;
+
+}
+
+.third{
+
+    width: 23%;
+    height: 35px;
+    background-color: lightgrey;
+    border-style:solid;
+    border-color: orange;
+    border-width: 1px;
+    float:left;
+    margin:3px;
+    cursor:pointer;
+}
+row{
+    display: flex;
+    justify-content: center;
+}
+
+
