@@ -1,0 +1,153 @@
+{% extends "weight_interface/base.html" %}
+{% block title %}
+Create new document
+{% endblock %}
+
+{% block content %}
+{%if user.is_authenticated%}
+
+    <html>
+            <head>
+                {%load static%}
+                <link  rel="stylesheet" href="{% static 'css/log_shipped_products_post.css' %}">
+                <!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+                      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+                      crossorigin="anonymous">-->
+            </head>
+           <body>
+                <div class="bod">
+                    <div class="content">
+                       <form method="post"  >
+                           {% csrf_token %}
+                           {{form.errors}}
+                                <h3 style="color: white;">Зміна даних</h3>
+                                <fieldset>
+                                   <legend><h4 style="color: white;">Загальна інформація</h4></legend>
+
+                                    <div class="base1">
+                                        <div class="row">
+                                            <div class="first">Від </div>
+                                            {% if logshippedproduct %}
+                                            <div class="hidn">{{logshippedproduct.Date|date:"j.n.Y"}}</div>
+                                            {% endif %}
+                                            <div class="first">Статус </div>
+                                            <div class="inp">{{form.Status}}</div>
+                                            <div class="first">Ціна </div>
+                                            <div class="inp">{{form.Price}}</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="first">Автомобіль </div>
+                                            <div class="inp">{{form.Car_license_plate}}</div>
+                                            <div class="first">Причеп </div>
+                                            <div class="inp">{{form.Trailer_license_plate}}</div>
+                                            <div class="first">Місц.вивантаж </div>
+                                            <div class="inp">{{form.Unloading_point}}</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="second">Перевізн </div>
+                                            <div class="inp">{{form.Carrier}}</div>
+                                            <div class="second">Покупець</div>
+                                            <div class="inp">{{form.Customer}}</div>
+                                            <div class="second">Поточ.тара</div>
+                                            <div class="inp">{{form.Current_container}}</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="first">Водій </div>
+                                            <div class="inp">{{form.Driver}}</div>
+                                            <div class="first">Телефон </div>
+                                            <div class="inp">{{form.Driver_phone}}</div>
+                                            <div class="first">Продукція </div>
+                                            <div class="inp">{{form.Product}}</div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                                <span>{{ error }}</span>
+                              <fieldset>
+                                   <legend><h4 style="color: white;">Зважування</h4></legend>
+                                    <div class="base3left">
+                                        <div class="row">
+                                            <div class="third">Вага БРУТ </div>
+                                            <div class="inp"><input id="1" name="brut" type="text" size="7" readonly></div>
+                                            <div class="button "><button name="btn-brut" type="button"
+                                                                     class="buttons-weight">Вага брутто</button></div>
+                                            <div class="third">Вага ТАРИ </div>
+                                            <div class="inp">{{form.Tare_weight_kilos}}</div>
+                                             <div><button name="tare" type="button" class="buttons-weight">
+                                                                                                Вага тари</button></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="third">НЕТТО(док)</div>
+                                            <div class="inp"><input id="2" name="netto" type="text" size="7"></div>
+                                            <div class="third">Вага НЕТ </div>
+                                            <div class="inp">{{form.Net_weight_kilos}}</div>
+                                            <div><button name="btn-net" type="button" class="buttons-weight">
+                                                                                            Вага нетто</button></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="third">Час виїзду</div>
+                                            <div class="inp">{{form.Departure_time}}</div>
+                                            <div class="third">Ваговик </div>
+                                            <div class="inp">{{form.Weightman}}</div>
+                                            <div ><button type="submit" class="button-success">Змінити</button></div>
+                                        </div>
+                                    </div>
+                              </fieldset>
+                       </form>
+                    </div>
+                </div>
+        </body>
+    </html>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const nettoWeightInput = document.querySelector('.inp input[name="netto"]');
+    const nettoButton = document.querySelector('button[name="btn-net"]');
+
+    nettoButton.addEventListener('click', function() {
+        // Отримання значення з поля вводу
+        const inputValue = parseFloat(nettoWeightInput.value);
+
+        // Генерація випадкового числа у діапазоні ±3% від значення поля
+        const randomNumber = inputValue * (1 + (Math.random() * 0.06 - 0.03)); // Від 97% до 103% від введеного числа
+
+        // Встановлення значення у поле вводу Net_weight_kilos
+        const netWeightInput = document.querySelector('.inp input[name="Net_weight_kilos"]');
+        netWeightInput.value = randomNumber.toFixed(2); // Встановлюємо результат з двома знаками після коми
+    });
+});
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const tareWeightInput = document.querySelector('.inp input[name="Tare_weight_kilos"]');
+        const tareButton = document.querySelector('button[name="tare"]');
+
+        tareButton.addEventListener('click', function() {
+            // Генерація випадкового числа у діапазоні ±5% від 16500
+            const randomNumber = 16500 * (1 + (Math.random() * 0.1 - 0.05)); // Від 95% до 105% від 16500
+
+            // Встановлення значення у поле вводу
+            tareWeightInput.value = randomNumber.toFixed(2); // Встановлюємо результат з двома знаками після коми
+        });
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const brutWeightInput = document.querySelector('.inp input[name="brut"]');
+    const brutButton = document.querySelector('button[name="btn-brut"]');
+    const netWeightInput = document.querySelector('.inp input[name="netto"]');
+    const tareWeightInput = document.querySelector('.inp input[name="Tare_weight_kilos"]');
+
+        brutButton.addEventListener('click', function() {
+            // Отримання значень з полів вводу
+            const netValue = parseFloat(netWeightInput.value);
+            const tareValue = parseFloat(tareWeightInput.value);
+
+            // Додавання значень і запис результату у поле вводу
+            const brutResult = netValue + tareValue;
+            brutWeightInput.value = brutResult.toFixed(2); // Встановлюємо результат з двома знаками після коми
+        });
+    });
+</script>
+{% endif %}
+{% endblock %}

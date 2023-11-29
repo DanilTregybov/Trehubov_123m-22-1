@@ -1,0 +1,172 @@
+
+.bod{
+
+    display: flex;
+
+    justify-content: center; /* Центрування по горизонталі */
+    align-items: center;
+
+    width: 100%;
+
+}
+h3{
+    margin:10px;
+    height:10px;
+}
+h4{
+    margin:5px;
+    padding:0px;
+}
+.form-cust{
+
+}
+.content{
+    display: flex;
+    align-items: center;
+    justify-content:center;
+     /* Центрування по горизонталі */
+    width: 70%;
+    background-color: #003975;/* Центрування по горизонталі */
+    /*border-style:solid;
+    border-color: pink;
+    border-width: 3px;*/
+    margin-top:50px;
+    border-radius:15px;
+}
+.base1{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: lightgrey;
+    border-style:solid;
+    border-color: white;
+    border-width: 1px;
+    border-radius:25px;
+}
+
+.base2{
+
+    width: 100%;
+
+    background-color: pink;
+    border-style:solid;
+    border-color: #0A0100;
+    border-width: 1px;
+}
+.base3left{
+
+    width: 100%;
+    border-radius:25px;
+    background-color: lightgrey;
+    border-style:solid;
+    border-color: white;
+    border-width: 1px;
+
+}
+.row{
+    display:flex;
+
+    align-items: center;
+    with:100%;
+    /*border-style: dotted;
+    border-color: beige;
+    border-width: 3px;*/
+    padding:3px;
+}
+.first{
+    border-radius:10px;
+    display:flex;
+    align-items: center;
+    justify-content:center;
+    width: 15%;
+    height:33px;
+    background-color: white;
+    /*border-style:solid;
+    border-color: #009933;
+    border-width: 1px;*/
+
+    margin:3px;
+
+}
+
+.second{
+    border-radius:10px;
+    display:flex;
+    align-items: center;
+    justify-content:center;
+    width: 15%;
+    height: 35px;
+    background-color: white;
+    /*border-style:solid;
+    border-color: red;
+    border-width: 1px;*/
+
+    margin:3px;
+
+
+}
+
+.third{
+    border-radius:10px;
+    display:flex;
+    align-items: center;
+    justify-content:center;
+    width: 15%;
+    height: 35px;
+    background-color: white;
+    /*border-style:solid;
+    border-color: orange;
+    border-width: 1px;*/
+
+    margin:3px;
+
+}
+
+button{
+    width: 80px;
+    height: 35px;
+    margin:5px;
+    cursor:pointer;
+}
+.button-success{
+    width: 80px;
+    height: 35px;
+    margin:5px;
+    cursor:pointer;
+    background-color: green;
+    border:1px;
+    border-radius:7px;
+    color:white;
+}
+.buttons-weight{
+    width: 80px;
+    height: 35px;
+    margin:5px;
+    cursor:pointer;
+    background-color: #ffc107;
+    border:1px;
+    border-radius:7px;
+
+}
+input{
+    with:100px;
+    height:35px;
+    margin:5px;
+    cursor:pointer;
+
+}
+.hidn{
+
+    padding-left:3px;
+    width: 10%;
+    margin:3px;
+}
+fieldset{
+    border-radius:17px;
+    margin:0px;
+
+
+}
+legend{
+
+}
