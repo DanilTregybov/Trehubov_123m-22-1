@@ -54,7 +54,13 @@ Create new document
                                             <div class="second">Отримувач</div>
                                             <div class="inp">{{form.Recipient}}</div>
                                             <div class="second">Умов пост</div>
-                                            <div class="inp">{{form.Delivery_condition}}</div>
+                                            <div class="inp">
+                                                <select name="Delivery_condition" id="deliveryConditionSelect">
+                                                    <option value="Самовивіз">Самовивіз</option>
+                                                    <option value="DAP">DAP</option>
+                                                    <option value="CPT">CPT</option>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
                                 </fieldset>
@@ -68,26 +74,26 @@ Create new document
                                             <div class="inp">{{form.Weight_on_invoice_kilos}}</div>
                                             <div class="third">Вага БРУТ </div>
                                             <div class="inp">{{form.Gross_weight_kilos}}</div>
-                                            <div class="inp"><input id="1" name="brut" type="text" size="3"></div>
-                                            <div class="button "><button name="btn-brut"
+                                            <div class="button "><button name="btn-brut" type="button"
                                                                          class="buttons-weight">Вага брутто</button></div>
                                         </div>
-                                             <div class="row">
+                                            <div class="row">
                                             <div class="hidn"></div>
                                             <div class="hidn"></div>
                                             <div class="third">Вага ТАРИ </div>
                                             <div class="inp">{{form.Tare_weight_kilos}}</div>
-
-                                            <div><button name="tare" class="buttons-weight">Вага тари</button></div>
+                                            <div><button name="tare" type="button" class="buttons-weight">
+                                                                                            Вага тари</button></div>
                                         </div>
                                         <div class="row">
                                             <div class="third">НЕТТО(док)</div>
                                             <div class="inp">{{form.Weight_net_kilos}}</div>
                                             <div class="third">Вага НЕТ </div>
                                             <div class="inp">{{form.Actual_weight}}</div>
-                                            <div class="third">Нестача</div>
+                                            <div class="third">Нестач/Надл</div>
                                             <div class="inp">{{form.Lack_of}}</div>
-                                            <div><button name="btn-net" class="buttons-weight">Нестача</button></div>
+                                            <div><button name="btn-net" type="button" class="buttons-weight">
+                                                                                                Нестача</button></div>
                                         </div>
                                         <div class="row">
                                             <div class="third">Час заїзду</div>
@@ -119,7 +125,7 @@ Create new document
                     const weightInvoice = parseFloat(weightInvoiceInput.value);
 
                     // Генерація випадкового числа у діапазоні ± 5% від weightInvoice
-                    const randomNumber = weightInvoice * (1 + (Math.random() * 0.1 - 0.05)); // Від 90% до 110% від weightInvoice
+                    const randomNumber = weightInvoice * (1 + (Math.random() * 0.1 - 0.03)); // Від 90% до 110% від weightInvoice
 
                     // Встановлення значення у поле вводу
                     grossWeightInput.value = randomNumber.toFixed(2); // Встановлюємо результат з двома знаками після коми
@@ -129,7 +135,7 @@ Create new document
                         const grossWeight = parseFloat(grossWeightInput.value);
 
                         // Виконання обчислень
-                        const result = grossWeight - weightInvoice;
+                        const result = weightInvoice - grossWeight;
 
                         // Перевірка на NaN та встановлення результату у поле вводу
                         if (!isNaN(result)) {
@@ -188,7 +194,7 @@ Create new document
                     const weightNet = parseFloat(weightNetInput.value);
 
                     // Виконання обчислень
-                    const lackOfValue = weightNet - actualWeight;
+                    const lackOfValue = actualWeight - weightNet;
 
                     // Перевірка на NaN та встановлення результату у поле вводу
                     if (!isNaN(lackOfValue)) {

@@ -10,7 +10,12 @@ html, body{
   height: 100vh;
   width: 100%;
   place-items: center;
-  background: linear-gradient(to right, #99004d 0%, #ff0080 100%);
+  background: #192841;
+  /*background-image: url("/static/weight_interface/8M2A962632.png");*/
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position:center center;
+  z-index:-2;
 }
 ::selection{
   background: #ff80bf;
@@ -130,4 +135,37 @@ html, body{
 .container .facebook a:hover{
   background: linear-gradient( to left,  #3b5998 0%, #476bb8 100%);
   margin: 20px 0 50px 0;
+}
+.img_logo1{
+    position: fixed; /* Встановлюємо абсолютне позиціонування */
+    top: 0%; /* Поміщаємо елемент на 50% від верху відносно батьківського елемента */
+   /* left: 74%;*/
+    right:0%;/* Поміщаємо елемент на 50% від лівого краю відносно батьківського елемента */
+    /*transform: translate(-50%, -50%);*/
+    width:670px;
+    height:700px;
+    z-index:-1;
+}
+.img_logo2{
+    position: fixed; /* Встановлюємо абсолютне позиціонування */
+    top: 0%; /* Поміщаємо елемент на 50% від верху відносно батьківського елемента */
+    left: -1%;
+
+    width:670px;
+    height:700px;
+    z-index:-1;
+}
+.logo-word {
+    position: fixed;
+    bottom:6%;
+    left:45%;
+    color:white;
+    font-family: 'Roboto', sans-serif;
+}
+.developer{
+    position: fixed;
+    bottom:2%;
+    left:40%;
+    color:white;
+    font-family: 'Roboto', sans-serif;
 }

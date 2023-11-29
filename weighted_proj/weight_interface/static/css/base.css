@@ -102,8 +102,7 @@ nav .menu-item:hover ~ #sub-menu-container #sub-menu-holder {
     opacity: 1;
     right: auto;
 }
-nav .menu-item:nth-of-type(1):hover ~ #sub-menu-container #sub-menu-holder,
-nav .menu-item:nth-of-type(4):hover ~ #sub-menu-container #sub-menu-holder {
+nav .menu-item:nth-of-type(1):hover ~ #sub-menu-container #sub-menu-holder{
     clip-path: inset(0 39em 0 0 round 10px);
     height: 8em;
 }
@@ -123,6 +122,11 @@ nav .menu-item:nth-of-type(2):hover ~ #sub-menu-container #sub-menu-holder {
 nav .menu-item:nth-of-type(3):hover ~ #sub-menu-container #sub-menu-holder {
     left: calc(15em + 1px);
     height: 8em;
+}
+
+nav .menu-item:nth-of-type(4):hover ~ #sub-menu-container #sub-menu-holder {
+    clip-path: inset(0 39em 0 0 round 10px);
+    height: 4em;
 }
 nav .menu-item:nth-of-type(4):hover ~ #sub-menu-container #sub-menu-holder {
     left: calc(24em + 1px);
@@ -368,25 +372,28 @@ nav .menu-item.highlight:hover ~ #sub-menu-container #sub-menu-holder #sub-menu-
 }
 
 .table{
-    border: 0px solid #eee;
+    border: 1px solid #eee;
     table-layout: ;
     font-size: 13.5px;
     justify-content: center;
-
+    background: #efefef;
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     overflow-y: auto;
 }
 .table th {
     font-weight: bold;
     padding: 5px;
-    background: #efefef;
-    border: 0px solid #dddddd;
+    background: #C4C3BF;;
+    border: 1px solid #dddddd;
+    border-color:#898880;
 }
 .table td{
+    height: 35px;
     padding: 2px 4px;
-    border: 0px solid #eee;
+    border: 1px solid #eee;
     text-align: left;
+
 }
 .table tbody tr:nth-child(odd){
     background: #C4C3BF;/*#C4C3BF*/
@@ -394,12 +401,15 @@ nav .menu-item.highlight:hover ~ #sub-menu-container #sub-menu-holder #sub-menu-
 .table tbody tr:nth-child(even){
     background: #898880;
 }
+.incomplete-data {
+    background-color: #FFCCCC; /* Встановлюємо червоний колір для незаповнених полів */
+}
 
 .pagination {
     position:absolute;
 
     /*justify-content: right;*/
-    margin-top: 20px;
+    margin-top: 5px;
      top: 570;
     left: 1000;
     right: 0;
@@ -413,6 +423,7 @@ nav .menu-item.highlight:hover ~ #sub-menu-container #sub-menu-holder #sub-menu-
     transition: background-color 0.3s;
     border: 1px solid #dee2e6;
     margin: 0 2px;
+    background-color: #004C9E;
 }
 
 .pagination a:hover {
@@ -423,10 +434,9 @@ nav .menu-item.highlight:hover ~ #sub-menu-container #sub-menu-holder #sub-menu-
     margin-right:8px;
     padding: 8px 10px;
     font-size: 13.5px;
-    background-color: #007BFF;
+    background-color: #004C9E;
     color: #fff;
 }
-
 .btn-change {
     color: #f8f9fa;
     background-color: #007BFF;
@@ -436,4 +446,42 @@ nav .menu-item.highlight:hover ~ #sub-menu-container #sub-menu-holder #sub-menu-
     color: #f8f9fa;
     background-color: #D10000;
     padding: 4px 4px;
+}
+.btn-warning {
+    color: #f8f9fa;
+    background-color: #ffc107;
+    padding: 4px 4px;
+}
+.img_logo1{
+    position: fixed; /* Встановлюємо абсолютне позиціонування */
+    top: 0%; /* Поміщаємо елемент на 50% від верху відносно батьківського елемента */
+   /* left: 74%;*/
+    right:0%;/* Поміщаємо елемент на 50% від лівого краю відносно батьківського елемента */
+    /*transform: translate(-50%, -50%);*/
+    width:670px;
+    height:700px;
+    z-index:-1;
+}
+.img_logo2{
+    position: fixed; /* Встановлюємо абсолютне позиціонування */
+    top: 0%; /* Поміщаємо елемент на 50% від верху відносно батьківського елемента */
+    left: -1%;
+
+    width:670px;
+    height:700px;
+    z-index:-1;
+}
+.logo-word {
+    position: fixed;
+    bottom:1%;
+    left:47%;
+    color:white;
+    font-family: 'Roboto', sans-serif;
+}
+.developer{
+    position: fixed;
+    bottom:-2%;
+    left:40%;
+    color:white;
+    font-family: 'Roboto', sans-serif;
 }

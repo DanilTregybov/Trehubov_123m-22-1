@@ -55,7 +55,13 @@ Create new document
                                             <div class="second">Отримувач</div>
                                             <div class="inp">{{form.Recipient}}</div>
                                             <div class="second">Умов пост</div>
-                                            <div class="inp">{{form.Delivery_condition}}</div>
+                                            <div class="inp">
+                                                <select name="Delivery_condition" id="deliveryConditionSelect">
+                                                    <option value="Самовивіз">Самовивіз</option>
+                                                    <option value="DAP">DAP</option>
+                                                    <option value="CPT">CPT</option>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
                                 </fieldset>
@@ -69,26 +75,28 @@ Create new document
                                             <div class="inp">{{form.Weight_on_invoice_kilos}}</div>
                                             <div class="third">Вага БРУТ </div>
                                             <div class="inp">{{form.Gross_weight_kilos}}</div>
-                                            <div class="inp"><input id="1" name="brut" type="text" size="3"></div>
-                                            <div class="button "><button name="btn-brut"
-                                                                         class="buttons-weight">Вага брутто</button></div>
+                                            <div class="button "><button name="btn-brut" type="button"
+                                                                     class="buttons-weight">Вага брутто</button></div>
                                         </div>
                                              <div class="row">
                                             <div class="hidn"></div>
                                             <div class="hidn"></div>
                                             <div class="third">Вага ТАРИ </div>
                                             <div class="inp">{{form.Tare_weight_kilos}}</div>
-
-                                            <div><button name="tare" class="buttons-weight">Вага тари</button></div>
+                                            <div><button name="tare" type="button" class="buttons-weight">
+                                                                                                Вага тари</button></div>
                                         </div>
                                         <div class="row">
                                             <div class="third">НЕТТО(док)</div>
                                             <div class="inp">{{form.Weight_net_kilos}}</div>
                                             <div class="third">Вага НЕТ </div>
                                             <div class="inp">{{form.Actual_weight}}</div>
+
                                             <div class="third">Нестача</div>
                                             <div class="inp">{{form.Lack_of}}</div>
-                                            <div><button name="btn-net" class="buttons-weight">Нестача</button></div>
+                                             <div><button name="btn-net" type="button" class="buttons-weight">
+                                                                                                Нестача</button></div>
+
                                         </div>
                                         <div class="row">
                                             <div class="third">Час заїзду</div>
@@ -97,7 +105,7 @@ Create new document
                                             <div class="inp">{{form.Departure_time}}</div>
                                             <div class="third">Ваговик </div>
                                             <div class="inp">{{form.Weightman}}</div>
-                                            <div ><button type="submit" class="button-success">Провести</button></div>
+                                            <div ><button type="submit" class="button-success">Змінити</button></div>
                                         </div>
                                     </div>
                               </fieldset>
@@ -106,100 +114,99 @@ Create new document
                 </div>
         </body>
     </html>
+ <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const brutInput = document.getElementById('1');
+        const weightInvoiceInput = document.querySelector('.inp input[name="Weight_on_invoice_kilos"]');
+        const grossWeightInput = document.querySelector('.inp input[name="Gross_weight_kilos"]');
+        const brutButton = document.querySelector('button[name="btn-brut"]');
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const brutInput = document.getElementById('1');
-            const weightInvoiceInput = document.querySelector('.inp input[name="Weight_on_invoice_kilos"]');
-            const grossWeightInput = document.querySelector('.inp input[name="Gross_weight_kilos"]');
-            const brutButton = document.querySelector('button[name="btn-brut"]');
+        brutButton.addEventListener('click', function() {
+            // Перевірка чи поля мають значення
+            if (weightInvoiceInput.value) {
+                const weightInvoice = parseFloat(weightInvoiceInput.value);
 
-            brutButton.addEventListener('click', function() {
-                // Перевірка чи поля мають значення
-                if (weightInvoiceInput.value) {
-                    const weightInvoice = parseFloat(weightInvoiceInput.value);
-
-                    // Генерація випадкового числа у діапазоні ± 5% від weightInvoice
-                    const randomNumber = weightInvoice * (1 + (Math.random() * 0.1 - 0.05)); // Від 90% до 110% від weightInvoice
-
-                    // Встановлення значення у поле вводу
-                    grossWeightInput.value = randomNumber.toFixed(2); // Встановлюємо результат з двома знаками після коми
-
-                    // Перевірка чи є значення у полі ваги брутто та реєстрація результату
-                    if (grossWeightInput.value) {
-                        const grossWeight = parseFloat(grossWeightInput.value);
-
-                        // Виконання обчислень
-                        const result = grossWeight - weightInvoice;
-
-                        // Перевірка на NaN та встановлення результату у поле вводу
-                        if (!isNaN(result)) {
-                            brutInput.value = result.toFixed(2); // Встановлюємо результат з двома знаками після коми
-                        } else {
-                            brutInput.value = "Error";
-                        }
-                    }
-                }
-            });
-        });
-    </script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const tareWeightInput = document.querySelector('.inp input[name="Tare_weight_kilos"]');
-            const grossWeightInput = document.querySelector('.inp input[name="Gross_weight_kilos"]');
-            const actualWeightInput = document.querySelector('.inp input[name="Actual_weight"]');
-            const tareButton = document.querySelector('button[name="tare"]');
-
-            tareButton.addEventListener('click', function() {
-                // Генерація випадкового числа у діапазоні ±5% від 16500
-                const randomNumber = 16500 * (1 + (Math.random() * 0.1 - 0.05)); // Від 95% до 105% від 16500
+                // Генерація випадкового числа у діапазоні ± 5% від weightInvoice
+                const randomNumber = weightInvoice * (1 + (Math.random() * 0.1 - 0.05)); // Від 90% до 110% від weightInvoice
 
                 // Встановлення значення у поле вводу
-                tareWeightInput.value = randomNumber.toFixed(2); // Встановлюємо результат з двома знаками після коми
+                grossWeightInput.value = randomNumber.toFixed(2); // Встановлюємо результат з двома знаками після коми
 
-                // Перевірка чи є значення у полі ваги тари та реєстрація результату
-                if (tareWeightInput.value && grossWeightInput.value) {
-                    const tareWeight = parseFloat(tareWeightInput.value);
+                // Перевірка чи є значення у полі ваги брутто та реєстрація результату
+                if (grossWeightInput.value) {
                     const grossWeight = parseFloat(grossWeightInput.value);
 
                     // Виконання обчислень
-                    const result = grossWeight - tareWeight;
+                    const result = grossWeight - weightInvoice;
 
                     // Перевірка на NaN та встановлення результату у поле вводу
                     if (!isNaN(result)) {
-                        actualWeightInput.value = result.toFixed(2); // Встановлюємо результат з двома знаками після коми
+                        brutInput.value = result.toFixed(2); // Встановлюємо результат з двома знаками після коми
                     } else {
-                        actualWeightInput.value = "Error";
+                        brutInput.value = "Error";
                     }
                 }
-            });
+            }
         });
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const actualWeightInput = document.querySelector('.inp input[name="Actual_weight"]');
-            const weightNetInput = document.querySelector('.inp input[name="Weight_net_kilos"]');
-            const lackOfInput = document.querySelector('.inp input[name="Lack_of"]');
-            const btnNet = document.querySelector('button[name="btn-net"]');
+    });
+</script>
 
-            btnNet.addEventListener('click', function() {
-                if (actualWeightInput.value && weightNetInput. value) {
-                    const actualWeight = parseFloat(actualWeightInput.value);
-                    const weightNet = parseFloat(weightNetInput.value);
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const tareWeightInput = document.querySelector('.inp input[name="Tare_weight_kilos"]');
+        const grossWeightInput = document.querySelector('.inp input[name="Gross_weight_kilos"]');
+        const actualWeightInput = document.querySelector('.inp input[name="Actual_weight"]');
+        const tareButton = document.querySelector('button[name="tare"]');
 
-                    // Виконання обчислень
-                    const lackOfValue = weightNet - actualWeight;
+        tareButton.addEventListener('click', function() {
+            // Генерація випадкового числа у діапазоні ±5% від 16500
+            const randomNumber = 16500 * (1 + (Math.random() * 0.1 - 0.05)); // Від 95% до 105% від 16500
 
-                    // Перевірка на NaN та встановлення результату у поле вводу
-                    if (!isNaN(lackOfValue)) {
-                        lackOfInput.value = lackOfValue.toFixed(2); // Встановлюємо результат з двома знаками після коми
-                    } else {
-                        lackOfInput.value = "Error";
-                    }
+            // Встановлення значення у поле вводу
+            tareWeightInput.value = randomNumber.toFixed(2); // Встановлюємо результат з двома знаками після коми
+
+            // Перевірка чи є значення у полі ваги тари та реєстрація результату
+            if (tareWeightInput.value && grossWeightInput.value) {
+                const tareWeight = parseFloat(tareWeightInput.value);
+                const grossWeight = parseFloat(grossWeightInput.value);
+
+                // Виконання обчислень
+                const result = grossWeight - tareWeight;
+
+                // Перевірка на NaN та встановлення результату у поле вводу
+                if (!isNaN(result)) {
+                    actualWeightInput.value = result.toFixed(2); // Встановлюємо результат з двома знаками після коми
+                } else {
+                    actualWeightInput.value = "Error";
                 }
-            });
+            }
         });
-    </script>
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const actualWeightInput = document.querySelector('.inp input[name="Actual_weight"]');
+        const weightNetInput = document.querySelector('.inp input[name="Weight_net_kilos"]');
+        const lackOfInput = document.querySelector('.inp input[name="Lack_of"]');
+        const btnNet = document.querySelector('button[name="btn-net"]');
+
+        btnNet.addEventListener('click', function() {
+            if (actualWeightInput.value && weightNetInput. value) {
+                const actualWeight = parseFloat(actualWeightInput.value);
+                const weightNet = parseFloat(weightNetInput.value);
+
+                // Виконання обчислень
+                const lackOfValue = weightNet - actualWeight;
+
+                // Перевірка на NaN та встановлення результату у поле вводу
+                if (!isNaN(lackOfValue)) {
+                    lackOfInput.value = lackOfValue.toFixed(2); // Встановлюємо результат з двома знаками після коми
+                } else {
+                    lackOfInput.value = "Error";
+                }
+            }
+        });
+    });
+</script>
 
 {% endblock %}

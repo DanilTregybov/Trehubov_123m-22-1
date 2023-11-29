@@ -5,7 +5,8 @@
 
     justify-content: center; /* Центрування по горизонталі */
     align-items: center;
-    background-color: #192841;/* #192841 по горизонталі */
+
+     /* #192841 по горизонталі */
     width: 100%;
 
 }
@@ -25,8 +26,8 @@ h4{
     align-items: center;
     justify-content:center;
      /* Центрування по горизонталі */
-    width: 87%;
-    background-color: #CBE5FF;/* Центрування по горизонталі */
+    width: 80%;
+    background-color: #003975;/* Центрування по горизонталі */
     /*border-style:solid;
     border-color: pink;
     border-width: 3px;*/
@@ -41,7 +42,7 @@ h4{
     border-style:solid;
     border-color: white;
     border-width: 1px;
-    border-radius:25px;
+    border-radius:15px;
 }
 
 .base2{
@@ -56,7 +57,7 @@ h4{
 .base3left{
 
     width: 100%;
-    border-radius:25px;
+    border-radius:15px;
     background-color: lightgrey;
     border-style:solid;
     border-color: white;
@@ -78,7 +79,7 @@ h4{
     display:flex;
     align-items: center;
     justify-content:center;
-    width: 10%;
+    width: 15%;
     height:33px;
     background-color: white;
     /*border-style:solid;
@@ -94,7 +95,7 @@ h4{
     display:flex;
     align-items: center;
     justify-content:center;
-    width: 10%;
+    width: 15%;
     height: 35px;
     background-color: white;
     /*border-style:solid;
@@ -111,7 +112,7 @@ h4{
     display:flex;
     align-items: center;
     justify-content:center;
-    width: 10%;
+    width: 15%;
     height: 35px;
     background-color: white;
     /*border-style:solid;
@@ -158,7 +159,7 @@ input{
 .hidn{
 
     padding-left:6px;
-    width: 16%;
+    width: 166px;
     margin:3px;
 }
 fieldset{

@@ -60,8 +60,8 @@
                                 <td style="white-space: nowrap;">{{cerealcrop.Driver}}</td>
                                 <td>{{cerealcrop.Driver_phone}}</td>
                                 <td style="white-space: nowrap;">{{cerealcrop.Carrier}}</td>
-                                <td>{{cerealcrop.Check_in_time}}</td>
-                                <td>{{cerealcrop.Departure_time}}</td>
+                                <td>{{cerealcrop.Check_in_time|time:"H:i"}}</td>
+                                <td>{{cerealcrop.Departure_time|time:"H:i"}}</td>
                                 <td style="white-space: nowrap;">{{cerealcrop.Weightman}}</td>
                                 <style>
                                     .btn-change a,
@@ -71,15 +71,26 @@
                                     }
                                 </style>
                                 <td >
-                                    <button type="button" class="btn-change">
-                                        <span aria-hidden="true"><a href="{% url 'cerealcrops_detail' cerealcrop.id %}"><i class="bi bi-pencil-square"></i></a></span>
-                                    </button>
-
+                                    {% if cerealcrop.Tare_weight_kilos is None or cerealcrop.Actual_weight is None or cerealcrop.Lack_of is None or cerealcrop.Departure_time is None %}
+                                        <button type="button" class="btn-warning">
+                                            <span aria-hidden="true"><a href="{% url 'cerealcrops_detail' cerealcrop.id %}">
+                                                <i class="bi bi-pencil-square"></i></a></span>
+                                        </button>
+                                    {%else%}
+                                        <button type="button" class="btn-change">
+                                            <span aria-hidden="true"><a href="{% url 'cerealcrops_detail' cerealcrop.id %}">
+                                                <i class="bi bi-pencil-square"></i></a></span>
+                                        </button>
+                                    {% endif %}
                                 </td>
                                 <td >
-                                    <button type="button" class="btn-delete">
-                                        <span  aria-hidden="true"><a href="{% url 'delete_cerealcrop' cerealcrop.id %}"><i class="bi bi-x-square-fill"></i></a></span>
-                                    </button>
+                                    <form style="margin:0px;" method="post" action="{% url 'delete_cerealcrop' cerealcrop.id %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn-delete" onclick="return confirm
+                                            ('Ви впевнені у видалені цієї інформації?')">
+                                            <span  aria-hidden="true"><i class="bi bi-x-square-fill"></i></span>
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                         {% endfor %}

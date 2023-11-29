@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-=3(jbuyks6zcxn#t+5)ljbxbci^u5jd378!7p&3z_oni*$1_0i
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -129,3 +129,12 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = reverse_lazy("cerealcrops")
+
+USE_X_FORWARDED_HOST = True
+  # Замените *.ngrok.io на ваш домен ngrok
+CORS_ALLOW_ALL_ORIGINS = True  # Для тестування. Після цього встановіть конкретні значення.
+CORS_ALLOWED_ORIGINS = [
+    "https://cef4-46-98-106-206.ngrok-free.app",
+    # Додайте інші необхідні походження тут
+]
+CSRF_TRUSTED_ORIGINS = ['https://cef4-46-98-106-206.ngrok-free.app']

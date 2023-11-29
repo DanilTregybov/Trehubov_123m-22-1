@@ -5,7 +5,7 @@
 
 	</head>
 {% block content %}
-    <h2 style="color: #C5CCC8;">Зернові культури</h2>
+    <h2 style="color: #C5CCC8;">Допоміжні матеріали</h2>
     {% if current_page %}
 
 			<table class="table">
@@ -23,7 +23,6 @@
 						<th>Вага тари,кг</th>
 						<th>Вага нетто,кг</th>
 						<th>Вага по накладній,кг</th>
-						<th>Надлишок,кг</th>
 						<th>Нестача,кг</th>
 						<th>Водій</th>
 						<th>Ваговик</th>
@@ -43,28 +42,45 @@
 						<td style="white-space: nowrap;">{{auxiliarymaterials.Supplier}}</td>
 						<td style="white-space: nowrap;">{{auxiliarymaterials.Car_license_plate}}</td>
 						<td style="white-space: nowrap;">{{auxiliarymaterials.Trailer_license_plate}}</td>
-						<td>{{auxiliarymaterials.Time_1st_weighing}}</td>
+						<td>{{auxiliarymaterials.Time_1st_weighing|time:"H:i"}}</td>
 						<td>{{auxiliarymaterials.Gross_weight_kilos}}</td>
-						<td>{{auxiliarymaterials.Time_2nd_weighing}}</td>
+						<td>{{auxiliarymaterials.Time_2nd_weighing|time:"H:i"}}</td>
 						<td>{{auxiliarymaterials.Tare_weight_kilos}}</td>
 						<td>{{auxiliarymaterials.Net_weight_kilos}}</td>
 						<td>{{auxiliarymaterials.Weight_on_invoice_kilos}}</td>
-						<td style="white-space: nowrap;">{{auxiliarymaterials.Surplus}}</td>
 						<td>{{auxiliarymaterials.Lack_of}}</td>
 						<td style="white-space: nowrap;">{{auxiliarymaterials.Driver}}</td>
 						<td style="white-space: nowrap;">{{auxiliarymaterials.Weightman}}</td>
 						<td>{{auxiliarymaterials.Number_of_CN}}</td>
-                            <td >
-                                <button type="button" class="btn-change">
-                                    <span aria-hidden="true"><i class="bi bi-pencil-square"></i></span>
+                        <style>
+                            .btn-change a,
+                            .btn-delete a {
+                                color: inherit !important; /* Встановлюємо спадковий колір тексту */
+                                text-decoration: none; /* Забираємо підкреслення */
+                            }
+                        </style>
+                        <td >
+                            {% if auxiliarymaterials.Tare_weight_kilos is None or auxiliarymaterials.Net_weight_kilos is None or auxiliarymaterials.Time_2nd_weighing is None or auxiliarymaterials.Lack_of is None %}
+                                <button type="button" class="btn-warning">
+                                    <span aria-hidden="true"><a href="{% url 'auxiliarymaterial_detail' auxiliarymaterials.id %}">
+                                        <i class="bi bi-pencil-square"></i></a></span>
                                 </button>
-
-                            </td>
-                            <td >
-                                <button type="button" class="btn-delete">
+                            {%else%}
+                                <button type="button" class="btn-change">
+                                    <span aria-hidden="true"><a href="{% url 'auxiliarymaterial_detail' auxiliarymaterials.id %}">
+                                        <i class="bi bi-pencil-square"></i></a></span>
+                                </button>
+                            {% endif %}
+                        </td>
+                        <td >
+                            <form style="margin:0px;" method="post" action="{% url 'delete_auxiliarymaterial' auxiliarymaterials.id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn-delete" onclick="return confirm
+                                    ('Ви впевнені у видалені цієї інформації?')" >
                                     <span  aria-hidden="true"><i class="bi bi-x-square-fill"></i></span>
                                 </button>
-                            </td>
+                            </form>
+                        </td>
                         </tr>
                     {% endfor %}
 

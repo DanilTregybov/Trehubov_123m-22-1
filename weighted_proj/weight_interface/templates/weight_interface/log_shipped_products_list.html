@@ -17,6 +17,7 @@
 						<th>Покупець</th>
 						<th>Продукція</th>
 						<th>Поточна тара</th>
+						<th>Вага брутто,кг</th>
 						<th>Вага тари,кг</th>
 						<th>Вага нетто,кг</th>
 						<th>Ціна</th>
@@ -35,41 +36,59 @@
 				<tbody>
                 {% for log_shipped_product in current_page %}
                         <tr>
-						<td>{{log_shipped_product.pk}}</td>
-						<td>{{log_shipped_product.Status}}</td>
-						<td>{{log_shipped_product.Date|date:"j.n.Y"}}</td>
-						<td style="white-space: nowrap;">{{log_shipped_product.Customer}}</td>
-						<td>{{log_shipped_product.Product}}</td>
-						<td>{{log_shipped_product.Current_container}}</td>
-						<td>{{log_shipped_product.Tare_weight_kilos}}</td>
-						<td>{{log_shipped_product.Net_weight_kilos}}</td>
-						<td>{{log_shipped_product.Price}}</td>
-						<td style="white-space: nowrap;">{{log_shipped_product.Carrier}}</td>
-						<td style="white-space: nowrap;">{{log_shipped_product.Driver}}</td>
-						<td>{{log_shipped_product.Driver_phone}}</td>
-						<td style="white-space: nowrap;">{{log_shipped_product.Unloading_point}}</td>
-						<td style="white-space: nowrap;">{{log_shipped_product.Car_license_plate}}</td>
-						<td style="white-space: nowrap;">{{log_shipped_product.Trailer_license_plate}}</td>
-						<td>{{log_shipped_product.Departure_time}}</td>
-						<td style="white-space: nowrap;">{{log_shipped_product.Weightman}}</td>
+							<td>{{log_shipped_product.pk}}</td>
+							<td>{{log_shipped_product.Status}}</td>
+							<td>{{log_shipped_product.Date|date:"j.n.Y"}}</td>
+							<td style="white-space: nowrap;">{{log_shipped_product.Customer}}</td>
+							<td>{{log_shipped_product.Product}}</td>
+							<td>{{log_shipped_product.Current_container}}</td>
+							<td>{{log_shipped_product.Gross_weight_kilos}}</td>
+							<td>{{log_shipped_product.Tare_weight_kilos}}</td>
+							<td>{{log_shipped_product.Net_weight_kilos}}</td>
+							<td>{{log_shipped_product.Price}}</td>
+							<td style="white-space: nowrap;">{{log_shipped_product.Carrier}}</td>
+							<td style="white-space: nowrap;">{{log_shipped_product.Driver}}</td>
+							<td>{{log_shipped_product.Driver_phone}}</td>
+							<td style="white-space: nowrap;">{{log_shipped_product.Unloading_point}}</td>
+							<td style="white-space: nowrap;">{{log_shipped_product.Car_license_plate}}</td>
+							<td style="white-space: nowrap;">{{log_shipped_product.Trailer_license_plate}}</td>
+							<td>{{log_shipped_product.Departure_time|time:"H:i"}}</td>
+							<td style="white-space: nowrap;">{{log_shipped_product.Weightman}}</td>
+							<style>
+								.btn-change a,
+								.btn-delete a {
+									color: inherit !important; /* Встановлюємо спадковий колір тексту */
+									text-decoration: none; /* Забираємо підкреслення */
+								}
+							</style>
+							<td >
+								{% if log_shipped_product.Tare_weight_kilos is None or log_shipped_product.Net_weight_kilos is None or log_shipped_product.Gross_weight_kilos is None %}
+									<button type="button" class="btn-warning">
+										<span aria-hidden="true"><a href="{% url 'logshippedproduct_detail' log_shipped_product.id %}">
+											<i class="bi bi-pencil-square"></i></a></span>
+									</button>
+								{%else%}
+									<button type="button" class="btn-change">
+										<span aria-hidden="true"><a href="{% url 'logshippedproduct_detail' log_shipped_product.id %}">
+											<i class="bi bi-pencil-square"></i></a></span>
+									</button>
+								{% endif %}
+							</td>
                             <td >
-                                <button type="button" class="btn-change">
-                                    <span aria-hidden="true"><i class="bi bi-pencil-square"></i></span>
-                                </button>
-
-                            </td>
-                            <td >
-                                <button type="button" class="btn-delete">
-                                    <span  aria-hidden="true"><i class="bi bi-x-square-fill"></i></span>
-                                </button>
+                                <form style="margin:0px;" method="post" action="{% url 'delete_logshippedproduct' log_shipped_product.id %}">
+									{% csrf_token %}
+									<button type="submit" class="btn-delete" onclick="return confirm
+										 ('Ви впевнені у видалені цієї інформації ?')" >
+										<span  aria-hidden="true"><i class="bi bi-x-square-fill"></i></span>
+									</button>
+								</form>
                             </td>
                         </tr>
                     {% endfor %}
 
 				</tbody>
             </table>
-
-    {% endif %}
+{% endif %}
 {% endblock %}
 {% block pagin %}
      <main>

@@ -28,7 +28,7 @@
                         <div class="icon"><i class="bi bi-truck"></i></div>
                         <div class="text">
                             <div class="title"><a style="color: #2B4153; text-decoration:none;" href="{% url 'create_cerealcrop' %}">Прийняти сировину<i class="far fa-arrow-right"></i></a></div>
-                            <div class="sub-text">Заповнення форми</div>
+                            <div class="sub-text"><a style="color: #2B4153; text-decoration:none;" href="{% url 'create_cerealcrop' %}">Заповнення форми</a></div>
                         </div>
                     </div>
 
@@ -50,8 +50,8 @@
                     <div class="icon-box">
                         <div class="icon"><i class="bi bi-minecart-loaded"></i></div>
                         <div class="text">
-                            <div class="title">Видати готову продукйію<i class="far fa-arrow-right"></i></div>
-                            <div class="sub-text">Заповнення форми</div>
+                            <div class="title"><a style="color: #2B4153; text-decoration:none;" href="{% url 'create_log_shipped_product' %}">Видати готову продукйію<i class="far fa-arrow-right"></i></a></div>
+                            <div class="sub-text"><a style="color: #2B4153; text-decoration:none;" href="{% url 'create_log_shipped_product' %}">Заповнення форми</a></div>
                         </div>
                     </div>
                     <div class="sub-menu-holder"></div>
@@ -72,8 +72,8 @@
                     <div class="icon-box">
                         <div class="icon"><i class="bi bi-boxes"></i></i></div>
                         <div class="text">
-                            <div class="title">Прийняти допоміжні матеріли<i class="far fa-arrow-right"></i></div>
-                            <div class="sub-text">Заповнення форми</div>
+                            <div class="title"><a style="color: #2B4153; text-decoration:none;" href="{% url 'create_auxiliarymaterial' %}">Прийняти допоміжні матеріли</a><i class="far fa-arrow-right"></i></div>
+                            <div class="sub-text"><a style="color: #2B4153; text-decoration:none;" href="{% url 'create_auxiliarymaterial' %}">Заповнення форми</a></div>
                         </div>
                     </div>
 
@@ -86,17 +86,10 @@
                 </div>
                 <div class="sub-menu">
                     <div class="icon-box">
-                        <div class="icon"><i class="bi bi-person-vcard"></i></div>
-                        <div class="text">
-                            <div class="title">Переглянути профіль<i class="far fa-arrow-right"></i></div>
-                            <div class="sub-text">Зміна даних користувача</div>
-                        </div>
-                    </div>
-                    <div class="icon-box">
                         <div class="icon"><i class="bi bi-person-walking"></i></div>
                         <div class="text">
-                            <div class="title"><a href="{% url 'logout' %}?next=/">Вийти<i class="far fa-arrow-right"></i></a></div>
-                            <div class="sub-text">Завершити роботу</div>
+                            <div class="title"><a style="color: #2B4153; text-decoration:none;" href="{% url 'logout' %}?next=/">Вийти<i class="far fa-arrow-right"></i></a></div>
+                            <div class="sub-text"><a style="color: #2B4153; text-decoration:none;" href="{% url 'logout' %}?next=/">Завершити роботу</a></div>
                         </div>
                     </div>
                  </div>
@@ -113,7 +106,10 @@
          {% block pagin %} {% endblock %}
 </header>
     <body>
-
+        <img class="img_logo1" src="/static/weight_interface/pngegg1.png" >
+        <img class="img_logo2" src="/static/weight_interface/pngegg2.png" >
+        <h2 class="logo-word">Intercorn</h2>
+        <h5 class="developer">Розробник Трегубов Данило Дмитрович &copy;</h5>
         <main>
             {% block content %}{% endblock %}
 

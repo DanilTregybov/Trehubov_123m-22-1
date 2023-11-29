@@ -17,16 +17,16 @@ class CerealCrops(models.Model):
     Car_license_plate = models.CharField(max_length=15)  # Реєстраційний номер авто
     Trailer_license_plate = models.CharField(max_length=15)  # Реєстраційний номер причіпа
     Gross_weight_kilos = models.FloatField()  # Вага брутто, кг
-    Tare_weight_kilos = models.FloatField()  # Вага тари, кг
+    Tare_weight_kilos = models.FloatField(null=True, blank=True)  # Вага тари, кг
     Weight_on_invoice_kilos = models.FloatField()  # Вага по накладній БРУТТО, кг
-    Weight_net_kilos = models.FloatField()  # Вага по накладній НЕТТО, кг
-    Actual_weight = models.FloatField()  # Вага фактична, кг
-    Lack_of = models.FloatField()  # Нестача
+    Weight_net_kilos = models.FloatField(null=True, blank=True)  # Вага по накладній НЕТТО, кг
+    Actual_weight = models.FloatField(null=True, blank=True)  # Вага НЕТТО, кг
+    Lack_of = models.FloatField(null=True, blank=True)  # Нестача
     Driver = models.CharField(max_length=80)  # Водій
     Driver_phone = models.CharField(max_length=40)  # Телефон водія
     Carrier = models.CharField(max_length=150)  # Перевізник
     Check_in_time = models.TimeField()  # Час заїзду
-    Departure_time = models.TimeField()  # Час виїзду
+    Departure_time = models.TimeField(null=True, blank=True)  # Час виїзду
     Weightman = models.CharField(max_length=80)  # Ваговик
 
 
@@ -56,8 +56,9 @@ class LogShippedProducts(models.Model):
     Customer = models.CharField(max_length=150)  # Покупець
     Product = models.CharField(max_length=150)  # Продукція
     Current_container = models.CharField(max_length=150)  # Поточна тара
-    Tare_weight_kilos = models.FloatField()  # Вага тари, кг
-    Net_weight_kilos = models.FloatField()  # Вага нетто, кг
+    Gross_weight_kilos = models.FloatField(null=True, blank=True)  # Вага брутто, кг
+    Tare_weight_kilos = models.FloatField(null=True, blank=True)  # Вага тари, кг
+    Net_weight_kilos = models.FloatField(null=True, blank=True)  # Вага нетто, кг
     Price = models.IntegerField()  # Ціна
     Carrier = models.CharField(max_length=150)  # Перевізник
     Driver = models.CharField(max_length=80)  # Водій
@@ -65,7 +66,7 @@ class LogShippedProducts(models.Model):
     Unloading_point = models.CharField(max_length=350)  # Пункт вивантаження
     Car_license_plate = models.CharField(max_length=15)  # Реєстраційний номер авто
     Trailer_license_plate = models.CharField(max_length=15)  # Реєстраційний номер причіпа
-    Departure_time = models.TimeField()  # Час виїзду
+    Departure_time = models.TimeField(null=True, blank=True)  # Час виїзду
     Weightman = models.CharField(max_length=80)  # Ваговик
 
     def __str__(self):
@@ -75,6 +76,7 @@ class LogShippedProducts(models.Model):
                                                                       self.Customer,
                                                                       self.Product,
                                                                       self.Current_container,
+                                                                      self.Gross_weight_kilos,
                                                                       self.Tare_weight_kilos,
                                                                       self.Net_weight_kilos,
                                                                       self.Price,
@@ -96,20 +98,19 @@ class AuxiliaryMaterials(models.Model):
     Supplier = models.CharField(max_length=150)  # Постачальник
     Car_license_plate = models.CharField(max_length=15)  # Реєстраційний номер авто
     Trailer_license_plate = models.CharField(max_length=15)  # Реєстраційний номер причіпа
-    Time_1st_weighing = models.TimeField()  # Час 1-го зважування
+    Time_1st_weighing = models.TimeField()  # Час заїзду
     Gross_weight_kilos = models.FloatField()  # Вага брутто, кг
-    Time_2nd_weighing = models.TimeField()  # Час 2-го зважування
-    Tare_weight_kilos = models.FloatField()  # Вага тари, кг
-    Net_weight_kilos = models.FloatField()  # Вага нетто, кг
-    Weight_on_invoice_kilos = models.FloatField()  # Вага по накладній,кг
-    Surplus = models.FloatField()  # Надлишок,кг
-    Lack_of = models.FloatField()  # Нестача,кг
+    Time_2nd_weighing = models.TimeField(null=True, blank=True)  # Час виїзду
+    Tare_weight_kilos = models.FloatField(null=True, blank=True)  # Вага тари, кг
+    Net_weight_kilos = models.FloatField(null=True, blank=True)  # Вага нетто, кг
+    Weight_on_invoice_kilos = models.FloatField(null=True, blank=True)  # Вага нетто (док),кг
+    Lack_of = models.FloatField(null=True, blank=True)  # Нестача,кг
     Driver = models.CharField(max_length=80)  # Водій
     Weightman = models.CharField(max_length=80)  # Ваговик
     Number_of_CN = models.IntegerField()  # Номер ТТН
 
     def __str__(self):
-        return "{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|".format(self.Date,
+        return "{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|".format(self.pk, self.Date,
                                                                       self.Product_name,
                                                                       self.Supplier,
                                                                       self.Car_license_plate,
@@ -120,7 +121,6 @@ class AuxiliaryMaterials(models.Model):
                                                                       self.Tare_weight_kilos,
                                                                       self.Net_weight_kilos,
                                                                       self.Weight_on_invoice_kilos,
-                                                                      self.Surplus,
                                                                       self.Lack_of,
                                                                       self.Driver,
                                                                       self.Weightman,
